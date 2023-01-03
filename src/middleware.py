@@ -9,7 +9,9 @@ import src
 excluded_endpoints = [
     '/api/v1/login',
     '/api/v1/register',
-    '/api/v1/fruit/create'
+    '/api/v1/fruit/create',
+    '/api/v1/form',
+    '/api/v1/testing'
 ]
 
 

@@ -12,11 +12,10 @@ app.wsgi_app = ProfilerMiddleware(app.wsgi_app)
 # asyncio.run(serve(application, Config()))
 
 # asgi_app = WsgiToAsgi(application)
-@app.route('/home')
-def home():
-    return render_template('index.html')
+# @app.route('/home')
+# def home():
+#     return render_template('index.html')
 
-
-if __name__ == '__main__':
-    app.run()
+# if __name__ == '__main__':
+#     app.run()
     

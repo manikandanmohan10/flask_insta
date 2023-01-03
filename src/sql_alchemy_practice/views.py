@@ -3,6 +3,8 @@ from flask import request, jsonify
 from src.db import db
 from src.sql_alchemy_practice.models import Fruits
 from http import HTTPStatus as status
+import logging
+logger = logging.getLogger()
 
 
 class CreateFruitAPI(MethodView):
@@ -43,5 +45,5 @@ class CreateFruitAPI(MethodView):
         
         # for fruit_name in fruit_list:
         #     fruit_dict[str(fruit_name.id)] = fruit_name.fruit_name
-        
+        # logger.debug("Testing")
         return jsonify(fruit_list), status.OK

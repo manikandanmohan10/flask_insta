@@ -5,7 +5,7 @@ from src.models import models_list
 from src.middleware import CustomMiddleWare
 from src.blueprint import blueprint_list
 from src.db import db
-from src.learning.views import testing
+# from src.learning.views import testing
 from src.celery_woker import celery
 from src.mail import mail
 from flask_login import LoginManager
@@ -13,6 +13,14 @@ from src.authentication.models import User
 from flask_jwt_extended.jwt_manager import JWTManager
 from src.social_login.github_login import make_github_blueprint
 from datetime import timedelta
+import logging
+from logging import FileHandler
+
+# Set up logging
+# file_handler = FileHandler('app.log')
+# logger = logging.getLogger('werkzeug')
+# logger.setLevel(logging.DEBUG)
+# logger.addHandler(file_handler)
 
 ### Flask extension objects instantiation ###
 ### Instantiate Celery ###
@@ -48,10 +56,13 @@ def create_app():
         
     #Registering middleware
     app.wsgi_app = CustomMiddleWare(app.wsgi_app)
+    
+    #Set up logging
+    logging.basicConfig(filename='error.log', level=logging.DEBUG)
 
     return app
 
-# app = create_app()
+app = create_app()
 # login_manager = app.login_manager
 # @login_manager.user_loader
 # def load_user(user_id):
@@ -60,5 +71,4 @@ def create_app():
 
 # def initialize_extensions(app):
     # Configure celery
-    
     
