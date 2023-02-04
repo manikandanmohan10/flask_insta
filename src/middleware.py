@@ -11,7 +11,9 @@ excluded_endpoints = [
     '/api/v1/register',
     '/api/v1/fruit/create',
     '/api/v1/form',
-    '/api/v1/testing'
+    '/api/v1/testing',
+    '/api/v1/getUser',
+    '/api/v1/deleteUser'
 ]
 
 

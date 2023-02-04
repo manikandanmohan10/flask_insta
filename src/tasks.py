@@ -15,8 +15,8 @@ def send_celery_email(message_data=None):
     message = Message(
         subject='Hello',
         sender=os.getenv('MAIL_USERNAME'),
-        recipients=['manikandanmkvk.ss@gmail.com'],
-        body='First Message'
+        recipients=message_data.get('recipients'),
+        body=message_data.get('body')
     )
     
     mail.send(message)

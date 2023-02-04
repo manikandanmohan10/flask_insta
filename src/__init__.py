@@ -15,6 +15,9 @@ from src.social_login.github_login import make_github_blueprint
 from datetime import timedelta
 import logging
 from logging import FileHandler
+from flask_cors import CORS
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
 
 # Set up logging
 # file_handler = FileHandler('app.log')
@@ -26,8 +29,16 @@ from logging import FileHandler
 ### Instantiate Celery ###
 
 def create_app():
+    sentry_sdk.init(
+        dsn="https://432f5de8a8784e9c811b13a9e18553e9@o1423025.ingest.sentry.io/4504576404094976",
+        integrations=[FlaskIntegration()],
+        traces_sample_rate=1.0,
+        environment='local',
+        send_default_pii=True
+    )
     app = Flask(__name__) 
-
+    CORS(app, resources={r"/*": {"origins": r"http://localhost/*"}})
+    
     JWTManager(app)
     
     # app.config.from_mapping(
@@ -55,7 +66,7 @@ def create_app():
         db.create_all()
         
     #Registering middleware
-    app.wsgi_app = CustomMiddleWare(app.wsgi_app)
+    # app.wsgi_app = CustomMiddleWare(app.wsgi_app)
     
     #Set up logging
     logging.basicConfig(filename='error.log', level=logging.DEBUG)
