@@ -1,6 +1,5 @@
 import threading
 import uuid
-import geoip2.database
 from src.db import db
 from flask_security import UserMixin
 from sqlalchemy.dialects.postgresql import UUID

@@ -18,6 +18,7 @@ from logging import FileHandler
 from flask_cors import CORS
 import sentry_sdk
 from sentry_sdk.integrations.flask import FlaskIntegration
+from flask_socketio import SocketIO
 
 # Set up logging
 # file_handler = FileHandler('app.log')
@@ -73,13 +74,12 @@ def create_app():
 
     return app
 
-app = create_app()
-# login_manager = app.login_manager
-# @login_manager.user_loader
-# def load_user(user_id):
-#     return User.query.get(int(user_id))
+# app = create_app()
+
+def socket():
+    socketio = SocketIO(create_app(), cors_allowed_origins='*')
+    return socketio
 
 
-# def initialize_extensions(app):
-    # Configure celery
-    
+
+
